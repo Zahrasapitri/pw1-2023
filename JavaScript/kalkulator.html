@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lingkaran</title>
+</head>
+<body>
+  <h1>Hitung Luas dan Keliling Lingkaran</h1>
+  <form action="" onsubmit="return false;">
+    <input type="number" placeholder="Masukkan diameter (cm)" id="diameter">
+    <input type="submit" value="Hitung">
+  </form>
+  <p id="hasil"></p>
+
+<script>
+    function hitung() {
+  let diameter = document.getElementById("diameter").value;
+  let jari = diameter / 2;
+
+  let luas = Math.PI * jari * jari;
+  let keliling = 2 * Math.PI * jari;
+
+  document.getElementById("hasil").innerHTML =
+    "Luas: " + luas + " cm<sup>2</sup>" + "<br>Keliling: " + keliling + " cm";
+}
+
+document.getElementById("diameter").addEventListener("change", hitung);
+</script>
+
+</body>
+</html>
