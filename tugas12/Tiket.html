@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Validasi</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Form Validasi</h2>
+  <form id="validationForm">
+    <input type="text" id="nama" placeholder="Nama">
+    <div id="namaError" class="error"></div>
+    <br>
+    <input type="text" id="email" placeholder="Email">
+    <div id="emailError" class="error"></div>
+    <br>
+    <input type="text" id="waktu" placeholder="Waktu keberangkatan (24 jam)">
+    <div id="waktuError" class="error"></div>
+    <br>
+    <input type="number" id="jumlahTiket" placeholder="Jumlah tiket">
+    <div id="jumlahTiketError" class="error"></div>
+    <br>
+    <button type="button" onclick="validateForm()">Submit</button>
+  </form>
+
+  <div id="hasilFormulir"></div>
+
+  <script>
+    function validateForm() {
+      let nama = document.getElementById('nama').value;
+      let email = document.getElementById('email').value;
+      let waktu = document.getElementById('waktu').value;
+      let jumlahTiket = document.getElementById('jumlahTiket').value;
+      let errors = false;
+
+      if (nama === "" || nama.length > 30) {
+        document.getElementById('namaError').innerHTML = "Nama harus diisi (maksimal 30 karakter).";
+        errors = true;
+      } 
+      else {
+        document.getElementById('namaError').innerHTML = "";
+      }
+
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        document.getElementById('emailError').innerHTML = "Format email tidak valid.";
+        errors = true;
+      } 
+      else {
+        document.getElementById('emailError').innerHTML = "";
+      }
+
+      if (!/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(waktu)) {
+        document.getElementById('waktuError').innerHTML = "Format waktu tidak valid (format 24 jam).";
+        errors = true;
+      } 
+      else {
+        document.getElementById('waktuError').innerHTML = "";
+      }
+
+      if (jumlahTiket === "" || jumlahTiket < 1 || jumlahTiket > 10 || !Number.isInteger(Number(jumlahTiket))) {
+        document.getElementById('jumlahTiketError').innerHTML = "Jumlah tiket harus diisi (bilangan bulat antara 1-10).";
+        errors = true;
+      } 
+      else {
+        document.getElementById('jumlahTiketError').innerHTML = "";
+      }
+
+      if (!errors) {
+        var hasilFormulir = "Nama: " + nama + "<br>Email: " + email + "<br>Waktu keberangkatan: " + waktu + "<br>Jumlah tiket: " + jumlahTiket;
+        document.getElementById('hasilFormulir').innerHTML = hasilFormulir;
+      }
+    }
+  </script>
+</body>
+</html>
